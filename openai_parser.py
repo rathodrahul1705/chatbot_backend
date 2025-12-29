@@ -1,9 +1,23 @@
-from openai import OpenAI
-import json
 import os
+import json
 import re
+from dotenv import load_dotenv
+from openai import OpenAI
 
-client = OpenAI(api_key="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")
+# ✅ Load environment variables FIRST
+load_dotenv()
+
+# ✅ Read API key from .env
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
+if not OPENAI_API_KEY:
+    raise RuntimeError(
+        "OPENAI_API_KEY not found. Please set it in your .env file."
+    )
+
+# ✅ Initialize OpenAI client
+client = OpenAI(api_key=OPENAI_API_KEY)
+
 
 def parse_resume(text: str):
     prompt = f"""
@@ -35,13 +49,15 @@ Resume Text:
 
     response = client.chat.completions.create(
         model="gpt-4o-mini",
-        messages=[{"role": "user", "content": prompt}],
+        messages=[
+            {"role": "user", "content": prompt}
+        ],
         temperature=0
     )
 
     content = response.choices[0].message.content.strip()
 
-    # 🔥 Remove markdown if model still adds it
+    # 🔥 Safety: remove markdown/code blocks if any
     content = re.sub(r"```json|```", "", content).strip()
 
     try:

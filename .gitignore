@@ -1,0 +1,68 @@
+# ===============================
+# Environment / Secrets
+# ===============================
+.env
+.env.*
+*.env
+
+# ===============================
+# Python
+# ===============================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.log
+*.sqlite3
+
+# Virtual environment
+venv/
+.env/venv/
+.venv/
+
+# ===============================
+# FastAPI / Backend
+# ===============================
+uploads/
+*.db
+
+# ===============================
+# Node / React
+# ===============================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build outputs
+build/
+dist/
+
+# ===============================
+# OS / Editor
+# ===============================
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# IntelliJ / PyCharm
+.idea/
+
+# ===============================
+# Mac / Linux
+# ===============================
+*.swp
+*.swo
+
+# ===============================
+# Coverage / Testing
+# ===============================
+.coverage
+htmlcov/
+
+# ===============================
+# Logs
+# ===============================
+logs/
